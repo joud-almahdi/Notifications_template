@@ -4,21 +4,22 @@ import 'package:http/http.dart' as http;
 import 'package:notificationtemplate/api/http.dart';
 import 'package:notificationtemplate/api/notifications_model.dart';
 
-final firestore=FirebaseFirestore.instance;
+final firestore = FirebaseFirestore.instance;
 
-
-
-class NotificationsServices
-{
-   notificationFuntion() async {
+class NotificationsServices {
+  notificationFuntion() async {
     final response = await http.post(
       Uri.parse('https://fcm.googleapis.com/fcm/send'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization':'key=AAAAipJQ6CU:APA91bGBiyXZpqdCWStJRUzX8TNIihQJvZz28-p5vqDrDeKNGDnTqQhkY93BfjoBajMsODGKrVnb0A-kkyBlcATCUxc01aIe9dhhNBxT695cBBaS7kHKT6Y3pVz-wGqoGSoQkCPBaECg'
+        'Authorization':
+            'key=AAAAipJQ6CU:APA91bGBiyXZpqdCWStJRUzX8TNIihQJvZz28-p5vqDrDeKNGDnTqQhkY93BfjoBajMsODGKrVnb0A-kkyBlcATCUxc01aIe9dhhNBxT695cBBaS7kHKT6Y3pVz-wGqoGSoQkCPBaECg'
       },
-      body: jsonEncode(
-          <String, dynamic>{"to": "dzKTvseCQMCICCU0v0yuJr:APA91bFsizPDO1QOCUeJi0wNGK07F4aQew4pkV5ZalOSQjcXZ9SOpuTT63y-ZrVcvlu29VfqTXAwsVR9P_ZxY2x0XdmiSS-bk6fsunK1QG_8ujuEwZ1rKAsOo55tzmiYGYiRtX-HUwak", "notification": {"title":"This","body":"This works"}}),
+      body: jsonEncode(<String, dynamic>{
+        "to":
+            "e9zRjrQTa0JOrqkkN0J0gj:APA91bEmeh9SVcHoIoR7qKpw257-DYy68kRTsAH_XTe5KlsMyOccir33Ygh2YfMfcf-yffxprrgysJXFbwgc74tRK9A09lxTk0cPpr7dOcW7B6KeQ7IA_uKZROIclXrfHyUOm48ijiwm",
+        "notification": {"title": "This", "body": "This works"}
+      }),
     );
     if (response.statusCode == 200) {
       return json.decode(response.body) as Map<String, dynamic>;
